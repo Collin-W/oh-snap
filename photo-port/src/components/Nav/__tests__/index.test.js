@@ -1,3 +1,4 @@
+// __tests__/Nav.test.js with hard coded categories
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -6,34 +7,34 @@ import Nav from '..';
 afterEach(cleanup);
 
 describe('Nav component', () => {
-    //baseline
-    it('renders', () => {
-        render(<Nav />)
-    })
+  it('renders', () => {
+    render(<Nav />);
+  });
 
-}) 
-
-
-    //snap
-    // snapshot test
-    it('matches snapshot', () => {
-        const { asFragment } = render(<Nav />);
-        expect(asFragment()).toMatchSnapshot();
-        // assert value comparison
-      });
+  it('matches snapshot', () => {
+    const { asFragment } = render(<Nav />);
     
-      describe('emoji is visible', () => {
-        it('inserts emoji into the h2', () => {
-        const { getByLabelText } = render(<Nav />);
-      
-        expect(getByLabelText('camera')).toHaveTextContent('📸');
-        });
-      })  
+    expect(asFragment()).toMatchSnapshot();
+  });
+})
 
-      describe('links are visible', () => {
-        it('inserts text into the links', () => {
-          const { getByTestId } = render(<Nav />);
-          expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
-          expect(getByTestId('about')).toHaveTextContent('About me');
-        });
-      })
+describe('emoji is visible', () => {
+  it('inserts emoji into the h2', () => {
+  const { getByLabelText } = render(<Nav />);
+
+  // eslint-disable-next-line testing-library/prefer-screen-queries
+  expect(getByLabelText('camera')).toHaveTextContent('📸');
+  });
+})  
+
+describe('links are visible', () => {
+  it('inserts text into the links', () => {
+    const { getByTestId } = render(<Nav />);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTestId('link')).toHaveTextContent('Oh Snap!');
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTestId('about')).toHaveTextContent('About me');
+  });
+
+})
